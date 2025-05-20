@@ -1,17 +1,28 @@
 import axios from "axios";
 
-const fetch = async (query, page = 1) => {
-    const findData = await axios.get("https://api.unsplash.com/search/photos", {
-        headers: {
-            Authorization: "Client-ID fc00PzBjvv_eu5m3SrhCteF7aO2V-39YEcoDqS71zNY",
-        },
-        params: {
-            query,
-            page,
-            per_page: 20,
-        }
-    });
+async function fetchPhotos(query, page = 1) {
+    const URL = "https://api.unsplash.com/search/photos";
+    const KEY = "fc00PzBjvv_eu5m3SrhCteF7aO2V-39YEcoDqS71zNY";
 
-    return findData.data;
+    try {
+        const res = await axios.get(URL, {
+            params: {
+                query,
+                page,
+                per_page: 10,
+            },
+            headers: {
+                Authorization: `Client-ID ${KEY}`
+            }
+        });
+        console.log(res.data);
+        return res.data;
+    } catch (error) {
+        console.log("errrrr", error);
+        return null;
+    }
+
+
 }
-export default fetch;
+
+export default fetchPhotos;

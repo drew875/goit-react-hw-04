@@ -1,18 +1,13 @@
-
+import ImageCard from "../ImageCard/ImageCard";
 
 const ImageGallery = ({ photos, onImageClick }) => {
     return (
-        <ul>
+        <ul className="image-gallery">
             {photos.map(photo => (
-                <li key={photo.id}>
-                    <img src={photo.urls.small}
-                        onClick={() => onImageClick(photo.urls.full)}
-                        style={{ cursor: "pointer" }} />
-                </li>
+                <ImageCard key={photo.id} photo={photo} onClick={onImageClick} />
             ))}
         </ul>
     );
 };
-
 
 export default ImageGallery;

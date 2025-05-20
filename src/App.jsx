@@ -5,6 +5,7 @@ import ImageGallery from "./components/ImageGallery/ImageGallery";
 import Loader from "./components/Loader/Loader";
 import LoadMoreButton from "./components/LoadMoreBtn/LoadMoreBtn";
 import ImageModal from './components/ImageModal/ImageModal';
+import ImageCard from "./components/ImageCard/ImageCard";
 import "./App.css"
 
 
