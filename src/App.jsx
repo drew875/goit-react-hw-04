@@ -5,7 +5,7 @@ import ImageGallery from "./components/ImageGallery/ImageGallery";
 import Loader from "./components/Loader/Loader";
 import LoadMoreButton from "./components/LoadMoreBtn/LoadMoreBtn";
 import ImageModal from './components/ImageModal/ImageModal';
-import ImageCard from "./components/ImageCard/ImageCard";
+import ErrorMessage from "./components/ErrorMessage/ErrorMessage";
 import "./App.css"
 
 
@@ -16,18 +16,20 @@ const App = () => {
   const [page, setPage] = useState(1);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedImage, setSelectedImage] = useState(null);
-
+  const [error, setError] = useState(null);
 
   const handleSearch = async (querySearch) => {
     console.log("u a search", querySearch);
     setPage(1);
     setCurrentQuery(querySearch);
     setLoading(true);
+    setError(null);
     try {
       const res = await fetch(querySearch);
       setPhotosData(res.results);
     } catch (error) {
-      console.log("error", error);
+      console.log("eeeerrr", error)
+      setError("somth wrong server")
     } finally {
       setLoading(false);
     }
@@ -61,6 +63,8 @@ const App = () => {
     <>
       <SearchBar onSubmit={handleSearch} />
       {loading && <Loader />}
+
+      {error && <ErrorMessage message={error} />}
       {!loading && photosName.length > 0 && <ImageGallery photos={photosName} onImageClick={handleImageClick} />}
       {!loading && photosName.length > 0 && (
         <LoadMoreButton onClick={handleLoadMore} />

@@ -1,5 +1,6 @@
 import axios from "axios";
 
+
 async function fetchPhotos(query, page = 1) {
     const URL = "https://api.unsplash.com/search/photos";
     const KEY = "fc00PzBjvv_eu5m3SrhCteF7aO2V-39YEcoDqS71zNY";
